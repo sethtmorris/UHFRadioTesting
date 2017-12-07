@@ -1,0 +1,94 @@
+*******************************************************************************************************************
+F_Summer2017
+
+This project demonstrates how to use uart to receive and record output from the GPS. The overall structure is as
+    follows, based on priorities set on the tasks when created in main(): 
+    - task_display_gps(void) will run as soon as it is eligible (when it has something to send to the computer 
+      terminal) 
+    - task_read_gps(void) will run if task_diplay_gps() is not eligible to run and if it itself is eligible (when 
+      the usb is not sending comething)
+    - task_blink(void) will run whenever all other tasks are ineligible, and will blink about once per second (the
+      actual period is  bit longer because it must wait for other tasks in order to run)
+
+
+*******************************************************************************************************************
+
+> void isr_rx0(void) __interrupt[USCIAB1RX_VECTOR] and void isr_rx1(void) __interrupt[USCIAB1RX_VECTOR] 
+  - isr's which are called each time the MSP430 detects a char in UCA0RXBUF and UCA1RXBUF (the microcontroller's rx 
+    buffers which hold output from uart), respectively. Each time these are called, they call csk_uart#_inchar(x)
+    (# is 0 or 1, x is UCA#RXBUF), which puts the char in UCA#RXBUF into a ring buffer created by csk functions. In
+    order for there to run, UART interrupts must be enabled through csk_uart0_open(CSK_UART_9600_N81_ACLK)
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+> void task_read_gps (void):
+  - reads from the gps and constructs a char array which contains one full message (11 NMEAsentences). The char 
+    array is called strGPSreadout. If the MSP430 cannot find one full NMEA grouping, this program will then set
+    strGPSreadout to "GPS output incomplete or not found" and will then proceed back to the scheduler
+  - ALGORITHM:      ( (#_) means start/end of for or while loop or if statement)
+    
+   (1_) infinite loop:  
+      1.1 wait for USB to complete whatever it is doing
+      1.2 reset strGPSreadout to null
+      1.3 open the UART port (resets ring buffer pointer to 0)
+      1.4 wait for 1.5 seconds for the GPS to output at least one full message
+      1.5 close the UART port to prevent interrupts from interrupting the rest of the program
+      1.6 find first char in the ring buffer, call it c
+     (2_) create strGPSreadout:
+        2.1 if rx0count = 0 (ring buffer completely read through) and no full grouping was found, strGPSreadout becomes an error message. break loop 2
+       (3_) check if char is '$' (all NMEA sentences start with '$')
+          3.1 put c in first element of strGPSreadout
+         (4_) create a header out of the '$' and the next 5 chars:
+            4.1 put next char in the ring buffer into next array element
+         (4_)
+         (5_) check if the header is the one that denotes the start of a GPS output grouping ('$PSLSP')
+            5.1 start counting number of NMEA sentences (count '$'s)
+           (6_) copy the entire GPS output grouping into strGPSreadout
+              6.1 find next char
+              6.2 if the next char found is a '$', increment sentence counter
+              6.3 if the 12th '$' is the next char, stop copying to strGPSreadout and break loop 6
+              6.4 put char into strGPSreadout
+           (6_)
+            5.2 done creating strGPSreadout (effectively breaks loop 2)
+         (5_)
+       (3_)
+        2.2 find next char, call it c (runs if next char is not '$' or the if header was not '$PSLSP')
+     (2_)
+      1.7 signal task_display_gps 
+   (1_)
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+       
+> void task_display_gps (void):
+  - uses usb and UART1 to communicate with the debugging computer. I used hyper terminal with a baud rate of 9600
+  - ALGORITHM:      ( (#_) means start/end of for or while loop or if statement)
+
+    0.1 set csk_status.usb_present to 1 ("true"). A placeholder for later
+   (1_) infinite loop:
+      1.1 wait for GPS to be ready
+     (2_) if usb is present:
+        2.1 open UART1 with 9600 baud rate
+        2.2 open USB
+        2.3 output strGPSreadout through UART1
+        2.4 wait 1 second for tx1 to finish sending info
+        2.5 close USB
+        2.6 close UART1
+     (2_)
+      1.1 signal to scheduler that the task is done
+   (1_)
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+> void task_blink (void):
+  - once again, this task is here purely to demonstrate the multitasking ability of the program
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+> settings to take note of: 
+    - I have set up the delays so that in OS_Delay(x * TIMER_RESOLUTION_MS), x represents the length of the delay
+      in miliseconds. However, the user must make sure that x * TIMER_RESOLUTION_MS results in an integer.
+    - the rx buffer size needs to be at least twice the size of the largest possible receivable message. Since,
+      the largest possible size we have read so far is 626 chars, and since even this reading had multiple spots
+      empty, I have set RX0_BUFF_SIZE and RX1_BUFF_SIZE to 1500. These two parameters can be found in config.h
+    - similarly, tx1 buffer needs to be larger than readout_size because of the way data_debug_message(x) works. 
+      it has been set to 1200

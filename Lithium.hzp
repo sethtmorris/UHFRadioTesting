@@ -1,0 +1,129 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="Lithium" target="9" version="2">
+  <project Name="Lithium">
+    <configuration
+      Name="Common"
+      Platform="MSP430"
+      Target="MSP430F2618"
+      build_use_hardware_multiplier="16-Bit Multiplier"
+      c_user_include_directories="/Pumpkin/Salvo/Src;/Pumpkin/Salvo/Inc;/Pumpkin/Library/MSP430/Src;/Pumpkin/Library/MSP430/Inc;/Pumpkin/CubesatKit/MSP430/src;/Pumpkin/CubeSatKit/MSP430/inc;/Pumpkin/Tests/Lithium"
+      linker_memory_map_file="$(PackagesDir)/targets/msp430/MSP430F2618.xml"
+      linker_section_placement_file="$(StudioDir)/targets/section_placement_info_abcd_iv32.xml"
+      msp430_identify_string="MSP430F2618"
+      msp430_insn_set="MSP430X"
+      msp430_memory_size="1M"
+      project_directory=""
+      project_type="Executable" />
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;h;s;asm;inc;s43" />
+      <folder Name="Salvo">
+        <folder Name="Headers" />
+        <folder Name="Libraries">
+          <file file_name="../../Salvo/Lib/RA430-v2/libsalvolra430xit.hza" />
+        </folder>
+        <folder Name="Source">
+          <file file_name="../../Salvo/Src/salvomem.c" />
+        </folder>
+      </folder>
+      <folder Name="Written Files">
+        <folder Name="Headers">
+          <file file_name="config.h" />
+          <file file_name="main.h" />
+          <file file_name="init.h" />
+          <file file_name="task_blink.h" />
+          <file file_name="task_read_gps.h" />
+          <file file_name="task_display_gps.h" />
+        </folder>
+        <folder Name="Salvo Configuration">
+          <file file_name="salvocfg.h" />
+        </folder>
+        <folder Name="Source">
+          <file file_name="main.c" />
+          <file file_name="isr.c" />
+          <file file_name="init.c" />
+          <file file_name="task_blink.c" />
+          <file file_name="task_read_gps.c" />
+          <file file_name="task_display_gps.c" />
+        </folder>
+      </folder>
+      <file file_name="Purpose of Project" />
+      <folder Name="CubeSat Kit">
+        <folder Name="Headers">
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_hw.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_io.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_led.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_mhx.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_power.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_rand.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_sd.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_uart.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_usb.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/csk_wdt.h" />
+          <file file_name="../../CubeSatKit/MSP430/inc/effs_thin_mmc_drv_ucb0.h" />
+        </folder>
+        <folder Name="Libraries">
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430x-4.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430-1.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430-2.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430-3.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430-4.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430x-1.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430x-2.hza" />
+          <file file_name="../../CubeSatKit/MSP430/lib/ra430-v2/lib_effs_thin_msp430x-3.hza" />
+        </folder>
+        <folder Name="Source">
+          <file file_name="../../CubeSatKit/MSP430/src/csk_io.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_led.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_mhx.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_power.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_rand.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_sd.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_usb.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/csk_wdt.c" />
+          <file file_name="../../CubeSatKit/MSP430/src/effs_thin_mmc_drv_ucb0.c" />
+        </folder>
+      </folder>
+      <folder Name="Library">
+        <folder Name="Headers">
+          <file file_name="../../Library/MSP430/Inc/usci_a_uart.h" />
+          <file file_name="../../Library/MSP430/Inc/usci_a_uart_msg_ts.h" />
+          <file file_name="../../Library/MSP430/Inc/USART_UART_msg.h" />
+        </folder>
+        <folder Name="Source">
+          <file file_name="../../Library/MSP430/Src/USCI_A0_UART.c" />
+          <file file_name="../../Library/MSP430/Src/USCI_A0_UART_msg_ts.c" />
+          <file file_name="../../Library/MSP430/Src/USCI_A1_UART.c" />
+          <file file_name="../../Library/MSP430/Src/USCI_A1_UART_msg_ts.c" />
+          <file file_name="../../Library/MSP430/Src/USCI_A0_UART_msg.c" />
+          <file file_name="../../Library/MSP430/Src/USCI_A1_UART_msg.c" />
+        </folder>
+        <folder Name="Libraries" />
+      </folder>
+    </folder>
+    <folder Name="System Files">
+      <configuration Name="Common" filter="xml" />
+      <file file_name="$(StudioDir)/src/crt0.asm" />
+    </folder>
+  </project>
+  <configuration
+    Name="MSP430 Debug"
+    inherited_configurations="MSP430;Debug" />
+  <configuration Name="MSP430" Platform="MSP430" hidden="Yes" />
+  <configuration Name="Debug" build_debug_information="Yes" hidden="Yes" />
+  <configuration
+    Name="MSP430 Release"
+    inherited_configurations="MSP430;Release" />
+  <configuration
+    Name="Release"
+    build_debug_information="No"
+    c_preprocessor_definitions="NDEBUG"
+    hidden="Yes"
+    optimize_block_locality="Yes"
+    optimize_copy_propagation="Yes"
+    optimize_cross_calling="Standard"
+    optimize_cross_jumping="Yes"
+    optimize_dead_code="Yes"
+    optimize_jump_chaining="Yes"
+    optimize_jump_threading="Yes"
+    optimize_tail_merging="Yes" />
+</solution>

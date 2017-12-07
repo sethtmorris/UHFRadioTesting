@@ -1,0 +1,185 @@
+
+SYMBOLS BY NAME
+
+    1100 IDATA0     _CK_A               
+    1102 IDATA0     _CK_B               
+    31e0 CODE       _NoOpRequest        
+    37f6 CODE       _OSClrWDTHook       
+    344a CODE       _OSCreateTask       
+    382c CODE       _OSCtxSw            
+    34e8 CODE       _OSDelPrioQ         
+    3862 CODE       _OSDethunkTFP       
+    37e6 CODE       _OSDisableHook      
+    3808 CODE       _OSDispatch         
+    37f0 CODE       _OSEnableHook       
+    37e4 CODE       _OSIdlingHook       
+    3428 CODE       _OSInit             
+    34c4 CODE       _OSInitPrioTask     
+    357a CODE       _OSInsDelayQ        
+    352c CODE       _OSInsPrioQ         
+    35de CODE       _OSSched            
+    37c8 CODE       _OSTimer            
+    1112 UDATA0     _OScTcbP            
+    110c UDATA0     _OSdelayQP          
+    1114 UDATA0     _OSeligQP           
+    1104 UDATA0     _OSframeP           
+    1106 UDATA0     _OSlostTicks        
+    1110 UDATA0     _OSsigQinP          
+    110e UDATA0     _OSsigQoutP         
+    1116 UDATA0     _OStcbArea          
+    1108 UDATA0     _OStimerTicks       
+    3210 CODE       _Recieve            
+    3232 CODE       _Transmit           
+    1100            ___RAM_Address      
+    2000            ___RAM_Size         
+    1100            ___begin_IDATA0     
+       0            ___begin_THREAD     
+    1104            ___begin_UDATA0     
+    38e8 CODE       ___debug_io_lock    
+    38ea CODE       ___debug_io_unlock  
+    388e CODE       ___do_debug_operation
+    1104            ___end_IDATA0       
+       0            ___end_THREAD       
+    13de            ___end_UDATA0       
+    3100 ISR        ___thunk_Recieve    
+    3104 ISR        ___thunk_Transmit   
+    1140 UDATA0     _buffer             
+    31c8 CODE       _calculate_header_checksum
+    13dc UDATA0     _dbgCntrlWord       
+    13da UDATA0     _dbgCommWord        
+    38c0 CODE       _debug_printf       
+    3152 ISR        _isr_adc            
+    315a ISR        _isr_cmpa           
+    3166 ISR        _isr_nmi            
+    314a ISR        _isr_p1             
+    3146 ISR        _isr_p2             
+    312a ISR        _isr_rx0            
+    3138 ISR        _isr_rx1            
+    3108 ISR        _isr_timerA0        
+    314e ISR        _isr_timera1        
+    3162 ISR        _isr_timerb0        
+    315e ISR        _isr_timerb1        
+    3116 ISR        _isr_tx0            
+    3120 ISR        _isr_tx1            
+    3156 ISR        _isr_wdt            
+    3252 CODE       _main               
+    386e CODE       _memcpy             
+    387e CODE       _memset             
+    1248 UDATA0     _rx0Buff            
+    128a UDATA0     _rx0Count           
+    1288 UDATA0     _rx0InP             
+    1392 UDATA0     _rx1Buff            
+    13d6 UDATA0     _rx1Count           
+    13d4 UDATA0     _rx1InP             
+    13d2 UDATA0     _rx1OutP            
+    1142 UDATA0     _tick               
+    1144 UDATA0     _tx0Buff            
+    1246 UDATA0     _tx0Count           
+    1244 UDATA0     _tx0OutP            
+    128c UDATA0     _tx1Buff            
+    1390 UDATA0     _tx1Count           
+    138e UDATA0     _tx1InP             
+    138c UDATA0     _tx1OutP            
+    32c4 CODE       _usci_a0_uart_inchar
+    329a CODE       _usci_a0_uart_outchar
+    3362 CODE       _usci_a1_uart_getchar
+    3402 CODE       _usci_a1_uart_inchar
+    32ea CODE       _usci_a1_uart_open  
+    33d8 CODE       _usci_a1_uart_outchar
+    338e CODE       _usci_a1_uart_putchar
+    33be CODE       _usci_a1_uart_puts  
+    31c8 CONST      thread_init_begin   
+    31c8 CONST      thread_init_end     
+
+
+SYMBOLS BY VALUE
+
+       0            ___begin_THREAD     
+       0            ___end_THREAD       
+    1100            ___begin_IDATA0     
+    1100 IDATA0     _CK_A               
+    1100            ___RAM_Address      
+    1102 IDATA0     _CK_B               
+    1104 UDATA0     _OSframeP           
+    1104            ___end_IDATA0       
+    1104            ___begin_UDATA0     
+    1106 UDATA0     _OSlostTicks        
+    1108 UDATA0     _OStimerTicks       
+    110c UDATA0     _OSdelayQP          
+    110e UDATA0     _OSsigQoutP         
+    1110 UDATA0     _OSsigQinP          
+    1112 UDATA0     _OScTcbP            
+    1114 UDATA0     _OSeligQP           
+    1116 UDATA0     _OStcbArea          
+    1140 UDATA0     _buffer             
+    1142 UDATA0     _tick               
+    1144 UDATA0     _tx0Buff            
+    1244 UDATA0     _tx0OutP            
+    1246 UDATA0     _tx0Count           
+    1248 UDATA0     _rx0Buff            
+    1288 UDATA0     _rx0InP             
+    128a UDATA0     _rx0Count           
+    128c UDATA0     _tx1Buff            
+    138c UDATA0     _tx1OutP            
+    138e UDATA0     _tx1InP             
+    1390 UDATA0     _tx1Count           
+    1392 UDATA0     _rx1Buff            
+    13d2 UDATA0     _rx1OutP            
+    13d4 UDATA0     _rx1InP             
+    13d6 UDATA0     _rx1Count           
+    13da UDATA0     _dbgCommWord        
+    13dc UDATA0     _dbgCntrlWord       
+    13de            ___end_UDATA0       
+    2000            ___RAM_Size         
+    3100 ISR        ___thunk_Recieve    
+    3104 ISR        ___thunk_Transmit   
+    3108 ISR        _isr_timerA0        
+    3116 ISR        _isr_tx0            
+    3120 ISR        _isr_tx1            
+    312a ISR        _isr_rx0            
+    3138 ISR        _isr_rx1            
+    3146 ISR        _isr_p2             
+    314a ISR        _isr_p1             
+    314e ISR        _isr_timera1        
+    3152 ISR        _isr_adc            
+    3156 ISR        _isr_wdt            
+    315a ISR        _isr_cmpa           
+    315e ISR        _isr_timerb1        
+    3162 ISR        _isr_timerb0        
+    3166 ISR        _isr_nmi            
+    31c8 CODE       _calculate_header_checksum
+    31c8 CONST      thread_init_end     
+    31c8 CONST      thread_init_begin   
+    31e0 CODE       _NoOpRequest        
+    3210 CODE       _Recieve            
+    3232 CODE       _Transmit           
+    3252 CODE       _main               
+    329a CODE       _usci_a0_uart_outchar
+    32c4 CODE       _usci_a0_uart_inchar
+    32ea CODE       _usci_a1_uart_open  
+    3362 CODE       _usci_a1_uart_getchar
+    338e CODE       _usci_a1_uart_putchar
+    33be CODE       _usci_a1_uart_puts  
+    33d8 CODE       _usci_a1_uart_outchar
+    3402 CODE       _usci_a1_uart_inchar
+    3428 CODE       _OSInit             
+    344a CODE       _OSCreateTask       
+    34c4 CODE       _OSInitPrioTask     
+    34e8 CODE       _OSDelPrioQ         
+    352c CODE       _OSInsPrioQ         
+    357a CODE       _OSInsDelayQ        
+    35de CODE       _OSSched            
+    37c8 CODE       _OSTimer            
+    37e4 CODE       _OSIdlingHook       
+    37e6 CODE       _OSDisableHook      
+    37f0 CODE       _OSEnableHook       
+    37f6 CODE       _OSClrWDTHook       
+    3808 CODE       _OSDispatch         
+    382c CODE       _OSCtxSw            
+    3862 CODE       _OSDethunkTFP       
+    386e CODE       _memcpy             
+    387e CODE       _memset             
+    388e CODE       ___do_debug_operation
+    38c0 CODE       _debug_printf       
+    38e8 CODE       ___debug_io_lock    
+    38ea CODE       ___debug_io_unlock  
